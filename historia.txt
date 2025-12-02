@@ -1,0 +1,30 @@
+A História:
+
+Quem é você: 
+O Inimigo:
+A Ameaça:
+Sua Missão:
+
+Fase 1:
+
+Descrição do Ambiente: 
+O Obstáculo:
+Saída:
+
+Fase 2:
+
+Descrição do Ambiente: 
+O Obstáculo:
+Saída:
+
+Fase 3:
+
+Descrição do Ambiente: 
+O Obstáculo:
+Saída:
+
+
+
+1.  Ambientes:
+2.  Itens:
+3.  Enigma:
