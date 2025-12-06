@@ -4,13 +4,12 @@ import gleam/io
 import jogador.{type Jogador}
 import objeto.{type Objeto}
 
-pub fn contexto_f1(input: Int) -> String {
+pub fn contexto_f1() {
   io.println(
     "Você é aluno de Ciência da Computação da UEM, convocado pelo professor Wagner Igarashi a impedir o colapso
     do semestre universitário. O Moodle foi invadido e sua missão é explorar as vulnerabilidades deixadas pelo hacker que
     corrompeu o sistema.",
   )
-
   io.println("\nENTRAR NO MOODLE HACKEADO [ENTER]")
   io.println(" Moodle UEM")
   io.println("     .-.  ")
@@ -47,12 +46,12 @@ pub fn entrar_no_ambiente(escolha: Int) -> Ambiente {
   }
 }
 
-pub fn area_disciplinas() -> String {
+pub fn area_disciplinas() {
   io.println("┌── 0. Disciplinas Disponíveis")
-  io.println("│   ├── 1. Programação funcional")
+  io.println("│   ├── 1. Análise de Sistemas")
   io.println("│   ├── 2. Banco de Dados I")
   io.println("│   ├── 3. Arquitetura e Organização de Computadores II")
-  io.println("│   └── 4. Análise de Sistemas")
+  io.println("│   └── 4. Programação funcional")
   io.println("Digite o número correspondente para acesso: ")
 }
 
@@ -82,9 +81,9 @@ pub fn ambiente_ass() -> Ambiente {
 }
 
 pub fn objeto_ass() -> Objeto {
-  objeto.criar("Log de acesso", "ERROR IP: [192]...", fn(j) {
-    io.println(">> Você anotou: Parte 1 = 132")
-    jogador.adicionar_item(j, "Nota_Parte_132")
+  objeto.novo_objeto("Log de acesso", "ERROR IP: [192]...", fn(j) {
+    io.println(">> Você anotou: Parte 1 = 192")
+    jogador.adiciona_item(j, "Nota_Parte_192")
   })
 }
 
@@ -102,9 +101,9 @@ pub fn ambiente_bd() -> Ambiente {
 }
 
 fn objeto_bd() -> Objeto {
-  objeto.criar("Query SQL Corrompida", "...conectado em [.168]...", fn(j) {
+  objeto.novo_objeto("Query SQL Corrompida", "...conectado em [.168]...", fn(j) {
     io.println(">> Você anotou ,.: Parte 2 = .168")
-    jogador.adicionar_item(j, "Nota_Parte_168")
+    jogador.adiciona_item(j, "Nota_Parte_168")
   })
 }
 
@@ -122,7 +121,7 @@ pub fn ambiente_arq() -> Ambiente {
 }
 
 fn objeto_arq() -> Objeto {
-  objeto.criar(
+  objeto.novo_objeto(
     "Terminal de Assembly (MIPS)",
     "Uma janela de simulação está aberta. O código parou na linha: 'XOR R1, R1'.",
     fn(j) {
@@ -133,7 +132,7 @@ fn objeto_arq() -> Objeto {
       io.println(">> O valor no Registrador R1 é: [0].")
       io.println(">> Você anotou: Parte 3 = .0")
 
-      jogador.adicionar_item(j, "Nota_Parte_0")
+      jogador.adiciona_item(j, "Nota_Parte_0")
     },
   )
 }
@@ -149,17 +148,22 @@ pub fn ambiente_pf() -> Ambiente {
 }
 
 fn enigma_ip_final() -> Enigma {
-  enigma.criar(
+  enigma.novo_enigma(
     "O terminal aguarda o IP completo. Junte as pistas das outras salas.\nQual é o IP? (Formato: xxx.xxx.x.x)",
     "192.168.0.1",
-    // A RESPOSTA FINAL
     ["Procure nas outras matérias", "Começa com 192..."],
-    liberar_fase2(),
+    liberar_fase2,
   )
 }
 
 fn liberar_fase2(j: Jogador) -> Jogador {
-  io.println(">> [SUCESSO] IP 192.168.0.1 confirmado!")
-  io.println(">> Conexão estabelecida com o Servidor Proxy.")
-  jogador.adicionar_item(j, "Acesso_Fase_2")
+  io.println("\n>> [SISTEMA] IP 192.168.0.1 localizado.")
+  io.println(">> [HACK] Iniciando varredura de portas no alvo...")
+  io.println(">> [ALERTA] Porta 22 (SSH) está ABERTA e VULNERÁVEL.")
+  io.println(">> [AUTO] Injetando exploit de conexão remota...")
+  io.println(">> ...")
+  io.println(">> ...")
+  io.println(">> CONEXÃO ESTABELECIDA.")
+
+  jogador.adiciona_item(j, "Conexao_SSH_Ativa")
 }

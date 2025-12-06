@@ -9,11 +9,10 @@ pub type Objeto {
   )
 }
 
-fn novo_objeto(
+pub fn novo_objeto(
   nome: String,
-  localizacao: String,
-  jogador: Jogador,
-  estado: String,
+  desc: String,
+  acao: fn(Jogador) -> Jogador,
 ) -> Objeto {
-  Objeto(nome, localizacao, fn(j) { j }, estado)
+  Objeto(nome: nome, descricao: desc, interacao: acao, estado: "Visível")
 }

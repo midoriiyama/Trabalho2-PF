@@ -11,7 +11,7 @@ pub type Ambiente {
   )
 }
 
-fn novo_ambiente(
+pub fn novo_ambiente(
   nome: String,
   descricao: String,
   objetos: List(Objeto),
