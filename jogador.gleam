@@ -9,8 +9,8 @@ pub type Jogador {
   )
 }
 
-fn novo_jogador(nome: String, local: String) -> Jogador {
-  Jogador(nome, [], 100, local)
+fn novo_jogador(nome: String, localizacao: String) -> Jogador {
+  Jogador(nome, [], 100, localizacao)
 }
 
 fn adiciona_item(jogador: Jogador, item: String) -> Jogador {

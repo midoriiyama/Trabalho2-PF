@@ -1,30 +1,58 @@
-A História:
+A História: Um Hacker invadiu o sistema da Universidade de Maringá, 
+e você, como um estudante de segurança cibernética, precisa recuperar o acesso
+ao Moodle, em uma série de desafios que o hacker colocou propositalmente para dificultar
+a invasão
+O inimigo contantemente tentando impedir seu avanço
 
-Quem é você: 
-O Inimigo:
-A Ameaça:
-Sua Missão:
+Quem é você: Estudante universitário
+O Inimigo: Hacker do moodlep
+A Ameaça: Hacker
+Sua Missão: Recuperar o sistema da Universidade
+Plot: É o início de algo maior por vir...
 
 Fase 1:
 
-Descrição do Ambiente: 
-O Obstáculo:
+Descrição do Ambiente: O Sistema Moodle todo corrompido estragado.
+O Obstáculo: 
 Saída:
+
+|
+------ pasta notas e faltas
+|
+|
+----- aba organização e recuperação de computadores
+|
+|
+----- programação funcional
+|               |--------- RESPOSTA
+|
+
+"Onde você deseja entrar?"
 
 Fase 2:
 
 Descrição do Ambiente: 
-O Obstáculo:
-Saída:
+O Obstáculo: Uma cifra de césar
+Saída: O nome/alguma informação que indica uma pessoa.
 
 Fase 3:
 
 Descrição do Ambiente: 
-O Obstáculo:
+O Obstáculo: Fuçar a vida pessoal de alguém (emails e mensagens) para acessar como administrador
 Saída:
 
+Fase 4:
 
+Descrição do Ambiente: 
+O Obstáculo: Uma simulação de SQL injection
+Saída:
+
+Fase 5:
+
+Descrição do Ambiente: 
+O Obstáculo: CONFRONTO FINAL - direto com o hacker
+Saída:
 
 1.  Ambientes:
-2.  Itens:
+2.  Itens: Pen-drive
 3.  Enigma:

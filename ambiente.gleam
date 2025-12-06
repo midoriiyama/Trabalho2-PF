@@ -7,3 +7,13 @@ pub type Ambiente {
     enigmas: List(Enigma),
   )
 }
+
+fn novo_ambiente(
+  nome: String,
+  descricao: String,
+  objetos: List(Objeto),
+  saidas: List(String),
+  enigmas: List(Enigma),
+) -> Ambiente {
+  Ambiente(nome, descricao, objetos, saidas, enigmas)
+}
