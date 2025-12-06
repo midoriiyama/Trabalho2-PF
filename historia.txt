@@ -16,18 +16,12 @@ Descrição do Ambiente: O Sistema Moodle todo corrompido estragado.
 O Obstáculo: 
 Saída:
 
-|
------- pasta notas e faltas
-|
-|
------ aba organização e recuperação de computadores
-|
-|
------ programação funcional
-|               |--------- RESPOSTA
-|
+┌── Disciplinas Disponíveis"
+│   ├── 1. Programação funcional"
+│   ├── 2. Banco de Dados I"
+│   ├── 3. Arquitetura e Organização de Computadores II"
+│   └── 4. Análise de Sistemas"
 
-"Onde você deseja entrar?"
 
 Fase 2:
 
@@ -44,15 +38,6 @@ Saída:
 Fase 4:
 
 Descrição do Ambiente: 
-O Obstáculo: Uma simulação de SQL injection
-Saída:
-
-Fase 5:
-
-Descrição do Ambiente: 
 O Obstáculo: CONFRONTO FINAL - direto com o hacker
 Saída:
 
-1.  Ambientes:
-2.  Itens: Pen-drive
-3.  Enigma:

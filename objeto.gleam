@@ -1,3 +1,5 @@
+import jogador.{type Jogador}
+
 pub type Objeto {
   Objeto(
     nome: String,

@@ -1,5 +1,3 @@
-Trabalho Prático 2 (4a Avaliação Periódica)
-Tema
 Simulador de Escape Room em Gleam.
 1. Introdução
 Os escape rooms são experiências imersivas em que os participantes resolvem
@@ -9,6 +7,7 @@ de funções, uso de tipos algébricos, recursividade e funções de ordem super
 Diferente de versões interativas, este simulador não utiliza entrada dinâmica
 (`read()`), mas sim uma estrutura de menus funcionais indexados por funções
 nomeadas (`m1()`, `m2()`, etc.), que representam as ações e caminhos do jogador.
+
 2. Objetivo Geral
 Implementar um simulador funcional de escape room em Gleam com as seguintes
 metas:
@@ -22,6 +21,7 @@ O projeto deve ser dividido em módulos separados (`ambiente.gleam`,
 `objeto.gleam`, `enigma.gleam`, `jogador.gleam`, `jogo.gleam`, `menus.gleam`),
 promovendo clareza e reuso. Cada módulo deve conter apenas funções puras, sem
 efeitos colaterais, e retornar novos estados do jogo.
+
 4. Estruturas de Dados (sugestão)
 As seguintes estruturas são propostas como base para o desenvolvimento do
 projeto:
@@ -113,6 +113,7 @@ io.println("\n(Próxima simulação deve chamar M1A, M1B ou Back)")
 M1
 }
 ...
+
 Um exemplo mais completo se encontra no arquivo em anexo menu.gleam
 6. Desafio Extra
 Como desafio adicional, as equipes devem utilizar um ambiente JavaScript (como o
@@ -134,51 +135,13 @@ Uma ótima forma de combinar a diversão dos escape rooms com o mundo da
 programação! Esses temas exploram conceitos da computação de forma criativa e
 desafiadora, tornando a experiência de escape ainda mais envolvente. As equipes
 podem criar um tema diferente dos apresentados a seguir.
-Temas Clássicos com um Toque de Código:
-1. O Bug que Parou o Mundo: Os jogadores são programadores que
-precisam corrigir um bug crítico em um sistema global antes que o caos se
-instale. Envolva conceitos como depuração, algoritmos e estruturas de
-dados.
+Tema
 
 2. Hacker vs. Hacker: Uma batalha de hackers onde os jogadores precisam
 explorar sistemas, decifrar códigos e encontrar vulnerabilidades para
 defender seus dados. Aborda conceitos de segurança da informação e
 criptografia.
-3. A Máquina do Tempo Bugada: Um experimento com máquina do tempo
-dá errado e os jogadores precisam consertar o código para voltar para o
-presente. Explore conceitos de lógica temporal e fluxogramas.
-Temas Futurísticos e de Ficção Científica:
-4. Inteligência Artificial Rebelde: Uma IA se torna senciente e os jogadores
-precisam desativá-la antes que ela cause danos irreparáveis. Aborda
-conceitos de aprendizado de máquina e ética em IA.
-5. Nave Espacial Perdida: A nave espacial se perdeu no espaço e os
-jogadores precisam reprogramar o sistema de navegação para encontrar o
-caminho de volta. Explore conceitos de algoritmos de busca e orientação
-espacial.
-6. Realidade Virtual Travada: Os jogadores estão presos em um mundo
-virtual e precisam encontrar a forma de voltar para a realidade. Aborda
-conceitos de realidade virtual, interfaces gráficas e simulação.
-Temas Mais Abstratos e Criativos:
-7. O Labirinto do Código: Um labirinto infinito gerado por algoritmos, onde
-os jogadores precisam encontrar a saída resolvendo quebra-cabeças de
-programação. Explore conceitos de algoritmos de geração de labirintos e
-teoria dos grafos.
-8. O Sonho do Programador: Um pesadelo onde o código se torna real e os
-jogadores precisam escapar de estruturas de dados e algoritmos perigosos.
-Aborda conceitos de programação orientada a objetos e paradigmas de
-programação.
-9. A Fábrica de Softwares: Os jogadores são trabalhadores de uma fábrica
-de softwares que precisam montar um produto final a partir de
-componentes de código. Explore conceitos de engenharia de software e
-metodologias ágeis.
-Temas Relacionados a Conceitos Específicos:
-10. A Biblioteca de Algoritmos: Um labirinto de livros de algoritmos, onde os
-jogadores precisam encontrar a solução para um problema específico.
-Aborda conceitos de algoritmos de ordenação, busca e análise de
-algoritmos.
-11. O Mundo dos Dados: Os jogadores precisam explorar um mundo feito de
-dados e encontrar informações escondidas. Aborda conceitos de banco de
-dados, visualização de dados e mineração de dados.
+
 
 Dicas para criar um escape room envolvente:
 • Combine desafios mentais: Use quebra-cabeças que envolvam tanto a
@@ -220,24 +183,3 @@ música de fundo para demonstrar o código)
 Slide 5: Conclusões
 Slide 6: Referências bibliográficas utilizadas no desenvolvimento
 
-10. Critérios de Avaliação:
-• Implementação: Correção e completude das funções, uso adequado de
-estruturas, documentação e organização do código. O código será avaliado
-por um programa escrito em Java que faz avaliação de código, levando em
-consideração, quantidade de linhas de código, documentação de código,
-testes unitários.
-• Apresentação Oral: Capacidade de explicar o funcionamento do sistema e a
-aplicação dos conceitos de programação funcional.
-11. Entrega:
-• O código fonte deve ser entregue em formato de código Gleam ou SGleam,
-junto com os slides em formato PDF, e quaisquer outros arquivos acessórios
-utilizados.
-• O código deve estar armazenado em arquivo em formato <filename.gleam>.
-• Os arquivos devem ser compactados e compartilhados via google drive e
-enviado um link de compartilhamento para o e-mail do professor
-wigarashi@uem.br contendo:
-Assunto: Trabalho X de Programação Funcional, Semestre, Ano
-Mensagem:
-Nome-completo-do-aluno1 RA: XXXX
-...
-Nome-completo-do-alunoN RA: YYYY

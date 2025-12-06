@@ -1,3 +1,6 @@
+import enigma.{type Enigma}
+import objeto.{type Objeto}
+
 pub type Ambiente {
   Ambiente(
     nome: String,
