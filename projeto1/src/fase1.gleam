@@ -1,7 +1,3 @@
-/////Constrói o ambiente(página) da disciplina de Banco de Dados I
-/////Constrói o ambiente(página) da disciplina de Arquitetura e Organização de Computadores II
-/////Constrói o ambiente(página) da disciplina de Programação Funcional
-
 import ambiente.{type Ambiente}
 import enigma.{type Enigma}
 import gleam/io
@@ -100,7 +96,7 @@ pub fn entrar_no_ambiente(escolha: Int) -> Ambiente {
   }
 }
 
-/// Cria o ambiente principal, em que todas as disciplinas estão
+/// Cria o ambiente principal, a qual estão todas as disciplinas
 pub fn ambiente_disciplina() -> Ambiente {
   ambiente.novo_ambiente(
     "Disciplinas Disponíveis",
@@ -156,6 +152,7 @@ pub fn adquire_objeto_ass(j: Jogador) -> Jogador {
   jogador.adiciona_item(j, "Número suspeito 192")
 }
 
+///Constrói o ambiente(página) da disciplina de Banco de Dados I
 pub fn ambiente_bd() -> Ambiente {
   let nome = "Disciplina de Banco de Dados"
   let descricao =
@@ -183,6 +180,8 @@ fn adquire_objeto_bd(j: Jogador) -> Jogador {
   jogador.adiciona_item(j, "Número suspeito 168")
 }
 
+///Constrói o ambiente(página) da disciplina de Arquitetura e 
+///Organização de Computadores II
 pub fn ambiente_arq() -> Ambiente {
   let nome = "Disciplina de Arquitetura de Computadores"
   let descricao =
@@ -220,14 +219,15 @@ pub fn adquire_objeto_arq(j: Jogador) -> Jogador {
   jogador.adiciona_item(j, "Número suspeito 0")
 }
 
+/// Constrói o ambiente(página) da disciplina de Programação Funcional
 pub fn ambiente_pf() -> Ambiente {
   let nome = "Disciplina de Programação Funcional"
   let descricao =
     "Você vê um Terminal Interativo (gleam REPL)!\nO hacker manipulou uma função de inicialização crítica,\nforçando-a a se tornar uma constante,\no que causa erros de consistência no kernel do Moodle."
-  ambiente.novo_ambiente(nome, descricao, [], ["Voltar"], [])
+  ambiente.novo_ambiente(nome, descricao, [], ["Voltar"], [enigma_pf()])
 }
 
-/// Cria o enigma que contém a quarta parte do IP ()
+/// Cria o enigma que contém a quarta parte do IP (7)
 pub fn enigma_pf() -> Enigma {
   enigma.novo_enigma(
     "fn calc_final_byte(n: Int) -> Int {\n"
@@ -248,7 +248,7 @@ pub fn adquire_objeto_pf(j: Jogador) -> Jogador {
   jogador.adiciona_item(j, "Número suspeito 7")
 }
 
-/// Libera a fase 2 do jogo, onde o jogador pode acessar o terminal do administrador
+/// Libera a fase 2 do jogo, onde o jogador vai poder acessar o terminal do administrador
 fn liberar_fase2(j: Jogador) -> Jogador {
   io.println(
     "________________________________________________________________________\n",

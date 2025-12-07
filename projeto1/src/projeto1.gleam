@@ -164,7 +164,12 @@ fn executar_rodada(sala_atual: Ambiente, hacker: Jogador) {
     "Pegar" -> {
       case list.first(sala_atual.objetos) {
         Ok(obj) -> {
+          io.println(
+            "\n========================================================================\n",
+          )
           io.println(">> Interagindo com: " <> obj.nome)
+          io.println("")
+          io.println(obj.descricao)
           let novo_hacker = jogo.interagir(obj, hacker)
           game_loop(sala_atual, novo_hacker)
         }

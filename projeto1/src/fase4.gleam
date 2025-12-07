@@ -38,7 +38,6 @@ pub fn contexto_f4() {
     "________________________________________________________________________\n",
   )
   io.println("O Hacker do Moodle está ativo e deletando tabelas!")
-  io.println("\nCONSOLE SQL: ATIVO (Privilégios de DELETE habilitados)")
   io.println("IDENTIFIQUE A TABELA E O NOME DO VÍRUS PARA REMOVÊ-LO")
   io.println(
     "________________________________________________________________________\n",
@@ -87,7 +86,7 @@ fn finalizar_jogo(j: Jogador) -> Jogador {
     "\n________________________________________________________________________\n",
   )
   io.println(
-    "EXECUTANDO:\nDELETE FROM processos_ativos WHERE nome = 'Hacker_Moodle'",
+    "EXECUTANDO:\n\nDELETE FROM processos_ativos WHERE nome = 'Hacker_Moodle'",
   )
   io.println(">> 1 linha afetada")
   io.println(">> Processo malicioso removido com sucesso")
@@ -118,18 +117,14 @@ fn enigma_sql() -> Enigma {
 /// Objeto que exibe o schema da tabela de processos ativos
 /// Mostra a estrutura da tabela e os processos ativos, incluindo o vírus do Moodle
 fn obj_schema_tabela() -> Objeto {
-  objeto.novo_objeto(
-    "Schema do Banco de Dados",
-    "Você consulta a estrutura das tabelas ativas",
-    fn(j) {
-      io.println("\n--- TABELA: processos_ativos ---")
-      io.println("| id  | nome            | status  |")
-      io.println("|-----|-----------------|---------|")
-      io.println("| 001 | System_Kernel   | OK      |")
-      io.println("| 666 | Hacker_Moodle   | MALWARE |")
-      j
-    },
-  )
+  objeto.novo_objeto("Schema do Banco de Dados", "", fn(j) {
+    io.println("\n                 --- TABELA: processos_ativos ---")
+    io.println("                 | id  | nome            | status  |")
+    io.println("                 |-----|-----------------|---------|")
+    io.println("                 | 001 | System_Kernel   | OK      |")
+    io.println("                 | 666 | Hacker_Moodle   | MALWARE |")
+    j
+  })
 }
 
 /// Cria o ambiente do servidor SQL, onde o usuário pode interagir com o enigma

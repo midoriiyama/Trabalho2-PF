@@ -7,6 +7,8 @@ import objeto.{type Objeto}
 @external(javascript, "../../../../readline_bridge.mjs", "question")
 pub fn question(prompt: String) -> String
 
+/// Ponto de entrada da Fase 3
+/// Exibe a narrativa inicial da fase e a inicia
 pub fn contexto_f3() {
   io.println(
     "\n\n\n========================================================================\n",
@@ -22,11 +24,10 @@ pub fn contexto_f3() {
   case question("") {
     _ -> entra_problema()
   }
-  io.println(
-    "________________________________________________________________________\n",
-  )
 }
 
+/// Introduz o problema da fase 3, exibindo o que o usuário precisará 
+/// resolver
 pub fn entra_problema() {
   io.println("")
   io.println("                          MM                                ")
@@ -88,7 +89,7 @@ pub fn entra_problema() {
   )
   io.println("ATENÇÃO: O sistema está em risco!")
   io.println(
-    "Você precisa encontrar o 'CASO BASE' para interromper a recursão:\n\n",
+    "Você precisa encontrar o 'CASO BASE' para interromper a recursão:\n",
   )
 
   exibir_codigo_virus()
@@ -98,9 +99,8 @@ pub fn entra_problema() {
   io.println("*Meu deus, eu preciso parar isso rapidamente*")
 }
 
+/// Exibe o código do vírus que está causando o problema no sistema
 pub fn exibir_codigo_virus() {
-  io.println("  // ARQUIVO: nucleo_sistema.gleam")
-  io.println("  // STATUS: CRÍTICO")
   io.println("  ")
   io.println("  pub fn loop_destrutivo(comando: List(String)) {")
   io.println("    case comando {")
@@ -114,6 +114,7 @@ pub fn exibir_codigo_virus() {
   io.println("  }")
 }
 
+/// Cria o objeto que contém uma dica para o jogador resolver o enigma
 fn obj_terminal_debug() -> Objeto {
   objeto.novo_objeto(
     "Terminal de Debug",
@@ -128,6 +129,28 @@ fn obj_terminal_debug() -> Objeto {
   )
 }
 
+/// Cria o enigma que o jogador deve resolver para avançar na fase
+fn enigma_dica() -> Enigma {
+  enigma.novo_enigma(
+    "Qual o nome da função que deve ser chamada no lugar de 'manter_loop()'?",
+    "recuperar_sistema()",
+    ["Leia o código na tela acima", "A função correta começa com 'recuperar_'"],
+    liberar_fase4,
+  )
+}
+
+/// Cria o ambiente da Fase 3
+pub fn ambiente_cpu() -> Ambiente {
+  ambiente.novo_ambiente(
+    "Núcleo do Processador",
+    "Um ambiente abstrato de código puro",
+    [obj_terminal_debug()],
+    ["Banco de Dados (Fase 4)"],
+    [enigma_dica()],
+  )
+}
+
+/// Libera a fase 4 ao jogador, adicionando o item necessário ao inventário
 fn liberar_fase4(j: Jogador) -> Jogador {
   io.println(
     "________________________________________________________________________\n",
@@ -137,23 +160,4 @@ fn liberar_fase4(j: Jogador) -> Jogador {
   io.println(">>  + recuperar_sistema()")
   io.println(">> Loop interrompido com sucesso. Memória estável")
   jogador.adiciona_item(j, "Acesso_Banco_Dados")
-}
-
-fn enigma_patch() -> Enigma {
-  enigma.novo_enigma(
-    "Qual o nome da função que deve ser chamada no lugar de 'manter_loop()'?",
-    "recuperar_sistema()",
-    ["Leia o código na tela acima", "A função correta começa com 'recuperar_'"],
-    liberar_fase4,
-  )
-}
-
-pub fn ambiente_cpu() -> Ambiente {
-  ambiente.novo_ambiente(
-    "Núcleo do Processador",
-    "Um ambiente abstrato de código puro",
-    [obj_terminal_debug()],
-    ["Banco de Dados (Fase 4)"],
-    [enigma_patch()],
-  )
 }

@@ -10,8 +10,8 @@ fn write_file(path: String, content: String) -> Bool
 @external(javascript, "../../../../readline_bridge.mjs", "question")
 pub fn question(prompt: String) -> String
 
-/// Contexto da Fase 2
-/// 
+/// Ponto de entrada da Fase 2
+/// Exibe a narrativa inicial da fase e a inicia
 pub fn contexto_f2() {
   io.println(
     "\n\n\n========================================================================\n",
@@ -20,21 +20,18 @@ pub fn contexto_f2() {
     "*Acho que entrei na máquina do administrador do Moodle*\n*Pelo visto existe uma falha na Porta 22...*",
   )
 
-  io.println("   ___________     ")
-  io.println("  |.---------.|    ")
-  io.println("  ||         || ")
-  io.println("  ||         || ")
-  io.println("  ||         || ")
-  io.println("  |'---------'| ")
-  io.println("   `)__ ____('  ")
-  io.println("   [=== -- o ]  ")
-  io.println(" __'---------'__ ")
-  io.println("[::::::::::: :::] ")
-  io.println("'---------------'")
-
-  io.println(
-    "*Será que com esse acesso, eu consigo encontrar pistas sobre o hacker?*",
-  )
+  io.println("                      ___________     ")
+  io.println("                     |.---------.|    ")
+  io.println("                     ||         || ")
+  io.println("                     ||         || ")
+  io.println("                     ||         || ")
+  io.println("                     |'---------'| ")
+  io.println("                      `)__ ____('  ")
+  io.println("                      [=== -- o ]  ")
+  io.println("                    __'---------'__ ")
+  io.println("                   [::::::::::: :::] ")
+  io.println("                   '---------------'")
+  io.println("")
   io.println(
     "*Tenho acesso aos e-mails do administrador*\n*Me pergunto se vou encontrar algo de útil...*",
   )
@@ -44,14 +41,13 @@ pub fn contexto_f2() {
   io.println("Baixar os e-mails do administrador [ENTER PARA CONTINUAR]")
 
   case question("") {
-    _ -> baixar_emails_reais()
+    _ -> baixar_emails()
   }
-  io.println(
-    "________________________________________________________________________\n",
-  )
 }
 
-fn baixar_emails_reais() {
+/// Simula o download dos e-mails do administrador, 
+/// salvando-os em arquivos locais
+fn baixar_emails() {
   io.println("Baixando caixa de entrada do Admin para seu diretório local...")
 
   let email1 =
@@ -192,6 +188,8 @@ fn baixar_emails_reais() {
   io.println("\n✅ DOWNLOAD CONCLUÍDO!")
 }
 
+/// Cria o objeto presente no ambiente da Fase 2
+/// que fornece uma dica para o jogador
 fn obj_dica() -> Objeto {
   objeto.novo_objeto(
     "Arquivo READ-ME.txt",
@@ -204,6 +202,8 @@ fn obj_dica() -> Objeto {
   )
 }
 
+/// Quando o enigma é resolvido, libera o acesso à Fase 3
+/// e adiciona o item "Credencial_Root_SQL" ao inventário do jogador
 fn liberar_fase3(j: Jogador) -> Jogador {
   io.println(
     "________________________________________________________________________\n",
@@ -213,6 +213,7 @@ fn liberar_fase3(j: Jogador) -> Jogador {
   jogador.adiciona_item(j, "Credencial_Root_SQL")
 }
 
+/// Cria o enigma presente no ambiente da Fase 2
 fn enigma_sudo() -> Enigma {
   enigma.novo_enigma(
     "Digite a senha de ROOT decifrada:",
@@ -222,10 +223,12 @@ fn enigma_sudo() -> Enigma {
   )
 }
 
+/// Cria o ambiente da Fase 2
 pub fn ambiente_adm() -> Ambiente {
   ambiente.novo_ambiente(
     "Terminal Remoto",
-    "*Acredito que preciso encontrar uma senha para obter acesso ROOT...*",
+    "O terminal exibe um *prompt* simples, confirmando que a conexão SSH\nfoi bem-sucedida, as você está como um **usuário comum** (`$`)\ne não pode fazer nada significativo"
+      <> "*Você digita o comando para obter privilégios de super-usuário\n e o sistema responde exigindo a senha para liberar o **Acesso ROOT**",
     [obj_dica()],
     ["Banco de Dados (Fase 3)"],
     [enigma_sudo()],
