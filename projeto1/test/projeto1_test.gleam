@@ -34,7 +34,6 @@ pub fn jogador_limite_alerta_test() {
 }
 
 pub fn jogador_recursao_inventario_test() {
-  // Esse teste prova que sua função recursiva 'possui_item_recursivo' funciona
   let p = jogador.novo_jogador("Test", "Local")
   let p_com_itens =
     p
@@ -59,10 +58,8 @@ pub fn engine_interacao_objeto_test() {
 
   let player = jogador.novo_jogador("Test", "Sala")
 
-  // Executa a interação usando a engine
+  // Executa a interação
   let player_novo = jogo.interagir(obj_teste, player)
-
-  // Verifica se a engine aplicou a mudança
   jogador.tem_item(player_novo, "Item Mágico") |> should.be_true()
 }
 
@@ -74,11 +71,8 @@ pub fn engine_resolver_enigma_sucesso_test() {
     })
 
   let player = jogador.novo_jogador("Test", "Sala")
-
-  // Tenta resolver com a senha CERTA
   let player_ganhador = jogo.resolver_enigma(enigma_teste, "RESPOSTA", player)
 
-  // Deve ter o item
   jogador.tem_item(player_ganhador, "Vitoria") |> should.be_true()
 }
 
@@ -89,11 +83,8 @@ pub fn engine_resolver_enigma_falha_test() {
     })
 
   let player = jogador.novo_jogador("Test", "Sala")
-
-  // Tenta resolver com a senha ERRADA
   let player_perdedor = jogo.resolver_enigma(enigma_teste, "errado", player)
 
-  // NÃO deve ter o item
   jogador.tem_item(player_perdedor, "Vitoria") |> should.be_false()
 }
 
