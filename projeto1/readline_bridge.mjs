@@ -1,19 +1,18 @@
-// Arquivo: readline_bridge.mjs
 import readline from 'readline-sync';
-import fs from 'node:fs'; // Importante: Importa o sistema de arquivos
+import fs from 'node:fs';
 
-// Função usada pelo jogo.gleam e main.gleam para ler input
+// Função de Input
 export function question(prompt) {
   return readline.question(prompt);
 }
 
-// Função usada pela fase2 e fase3 para criar arquivos reais (.txt)
+// Função de Arquivos
 export function write_file(path, content) {
   try {
     fs.writeFileSync(path, content);
-    return true; // Sucesso
+    return true;
   } catch (err) {
     console.error("Erro ao escrever arquivo:", err);
-    return false; // Falha
+    return false;
   }
 }

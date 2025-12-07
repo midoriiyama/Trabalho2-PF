@@ -14,6 +14,20 @@ import jogo
 @external(javascript, "../../../../readline_bridge.mjs", "question")
 pub fn question(prompt: String) -> String
 
+pub fn print_centralizado(texto: String) {
+  let largura_terminal = 72
+  let tamanho_texto = string.length(texto)
+
+  let padding = { largura_terminal - tamanho_texto } / 2
+
+  let espacos = case padding > 0 {
+    True -> string.repeat(" ", padding)
+    False -> ""
+  }
+
+  io.println(espacos <> texto)
+}
+
 /// Inicia o jogo e executanto um loop
 /// O loop verifica o nível de alerta do jogador e se ele venceu ou perdeu
 fn game_loop(sala_atual: Ambiente, hacker: Jogador) {
@@ -50,7 +64,7 @@ fn verifica_vitoria(hacker: Jogador, sala_atual: Ambiente) {
   case jogador.tem_item(hacker, "VITORIA_FINAL") {
     True -> {
       io.println(
-        "Pode fechar o terminal, ler o arquivo gerado e ir comemorar!!!",
+        "Parabéns! Jogo concluído com sucesso!\n Você impediu o hacker, agindo como um defensor do sistema!!",
       )
       Nil
     }
@@ -120,9 +134,9 @@ fn executar_rodada(sala_atual: Ambiente, hacker: Jogador) {
   io.println(
     "\n========================================================================\n",
   )
-  io.println("                 📍 " <> sala_atual.nome)
-  io.println(
-    "                        ALERTA: "
+  print_centralizado("📍 " <> sala_atual.nome)
+  print_centralizado(
+    "ALERTA: "
     <> int.to_string(hacker.nivel_alerta)
     <> "% | ITENS: "
     <> int.to_string(list.length(hacker.inventario)),
@@ -130,15 +144,15 @@ fn executar_rodada(sala_atual: Ambiente, hacker: Jogador) {
   io.println(
     "________________________________________________________________________\n",
   )
-  io.println("           Comandos: [Investigar] [Pegar] [Hackear] [Mochila]")
+  print_centralizado("Comandos: [Investigar] [Pegar] [Hackear] [Mochila]")
 
   // Comandos de navegação da Fase 1
   case string.contains(sala_atual.nome, "Disciplinas Disponíveis") {
-    True -> io.println("                Navegação: [Ir 1] [Ir 2] [Ir 3] [Ir 4]")
+    True -> print_centralizado("Navegação: [Ir 1] [Ir 2] [Ir 3] [Ir 4]")
     False -> Nil
   }
   case string.contains(sala_atual.nome, "Disciplina ") {
-    True -> io.println("               Navegação: [Voltar]")
+    True -> print_centralizado("Navegação: [Voltar]")
     False -> Nil
   }
 
@@ -156,7 +170,7 @@ fn executar_rodada(sala_atual: Ambiente, hacker: Jogador) {
       io.println(
         "\n========================================================================",
       )
-      io.println("\n                           SEU INVENTÁRIO:\n")
+      print_centralizado("\nSEU INVENTÁRIO:\n")
       list.each(hacker.inventario, fn(i) { io.println(" - " <> i) })
       game_loop(sala_atual, hacker)
     }
@@ -165,7 +179,7 @@ fn executar_rodada(sala_atual: Ambiente, hacker: Jogador) {
       case list.first(sala_atual.objetos) {
         Ok(obj) -> {
           io.println(
-            "\n========================================================================\n",
+            "\n========================================================================",
           )
           io.println(">> Interagindo com: " <> obj.nome)
           io.println("")

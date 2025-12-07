@@ -20,17 +20,17 @@ pub fn contexto_f2() {
     "*Acho que entrei na máquina do administrador do Moodle*\n*Pelo visto existe uma falha na Porta 22...*",
   )
 
-  io.println("                      ___________     ")
-  io.println("                     |.---------.|    ")
-  io.println("                     ||         || ")
-  io.println("                     ||         || ")
-  io.println("                     ||         || ")
-  io.println("                     |'---------'| ")
-  io.println("                      `)__ ____('  ")
-  io.println("                      [=== -- o ]  ")
-  io.println("                    __'---------'__ ")
-  io.println("                   [::::::::::: :::] ")
-  io.println("                   '---------------'")
+  io.println("                          ___________     ")
+  io.println("                         |.---------.|    ")
+  io.println("                         ||         || ")
+  io.println("                         ||         || ")
+  io.println("                         ||         || ")
+  io.println("                         |'---------'| ")
+  io.println("                          `)__ ____('  ")
+  io.println("                          [=== -- o ]  ")
+  io.println("                        __'---------'__ ")
+  io.println("                       [::::::::::: :::] ")
+  io.println("                       '---------------'")
   io.println("")
   io.println(
     "*Tenho acesso aos e-mails do administrador*\n*Me pergunto se vou encontrar algo de útil...*",
@@ -227,8 +227,8 @@ fn enigma_sudo() -> Enigma {
 pub fn ambiente_adm() -> Ambiente {
   ambiente.novo_ambiente(
     "Terminal Remoto",
-    "O terminal exibe um *prompt* simples, confirmando que a conexão SSH\nfoi bem-sucedida, as você está como um **usuário comum** (`$`)\ne não pode fazer nada significativo"
-      <> "*Você digita o comando para obter privilégios de super-usuário\n e o sistema responde exigindo a senha para liberar o **Acesso ROOT**",
+    "O terminal exibe um *prompt* simples, confirmando que a conexão SSH\nfoi bem-sucedida, as você está como um **usuário comum** (`$`)\ne não pode fazer nada significativo.\n"
+      <> "*Você digita o comando para obter\nprivilégios de super-usuário e o sistema responde exigindo\na senha para liberar o **Acesso ROOT**",
     [obj_dica()],
     ["Banco de Dados (Fase 3)"],
     [enigma_sudo()],

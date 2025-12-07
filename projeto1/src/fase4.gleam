@@ -39,9 +39,6 @@ pub fn contexto_f4() {
   )
   io.println("O Hacker do Moodle está ativo e deletando tabelas!")
   io.println("IDENTIFIQUE A TABELA E O NOME DO VÍRUS PARA REMOVÊ-LO")
-  io.println(
-    "________________________________________________________________________\n",
-  )
 }
 
 /// Relatório final de vitória e salva em um arquivo

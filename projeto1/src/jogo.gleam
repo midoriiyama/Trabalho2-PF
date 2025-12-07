@@ -11,8 +11,8 @@ pub fn explorar(amb: Ambiente, _jog: Jogador) -> String {
   string.join(
     [
       "\n========================================================================",
-      "        INVESTIGAR LOCAL ATUAL: " <> amb.nome,
-      "========================================================================\n",
+      "INVESTIGAR LOCAL ATUAL: " <> amb.nome,
+      "________________________________________________________________________\n",
       amb.descricao,
       "",
       "O que há na sala:",

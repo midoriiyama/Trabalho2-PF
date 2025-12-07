@@ -101,7 +101,6 @@ pub fn entra_problema() {
 
 /// Exibe o código do vírus que está causando o problema no sistema
 pub fn exibir_codigo_virus() {
-  io.println("  ")
   io.println("  pub fn loop_destrutivo(comando: List(String)) {")
   io.println("    case comando {")
   io.println("      ")
