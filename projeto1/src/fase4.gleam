@@ -7,6 +7,9 @@ import objeto.{type Objeto}
 @external(javascript, "../../../../readline_bridge.mjs", "write_file")
 fn write_file(path: String, content: String) -> Bool
 
+/// Ponto de entrada da Fase 4
+/// Exibe a narrativa inicial da fase, depois que o usuário conseguiu parar o loop infinito
+/// A fase envolve acessar o servidor SQL com credenciais de ROOT
 pub fn contexto_f4() {
   io.println(
     "\n\n\n========================================================================\n",
@@ -35,15 +38,16 @@ pub fn contexto_f4() {
     "________________________________________________________________________\n",
   )
   io.println("O Hacker do Moodle está ativo e deletando tabelas!")
-  io.println(
-    "\n[SISTEMA] CONSOLE SQL: ATIVO (Privilégios de DELETE habilitados)",
-  )
-  io.println("[SISTEMA] IDENTIFIQUE A TABELA E O NOME DO VÍRUS PARA REMOVÊ-LO")
+  io.println("\nCONSOLE SQL: ATIVO (Privilégios de DELETE habilitados)")
+  io.println("IDENTIFIQUE A TABELA E O NOME DO VÍRUS PARA REMOVÊ-LO")
   io.println(
     "________________________________________________________________________\n",
   )
 }
 
+/// Relatório final de vitória e salva em um arquivo
+/// O relatório inclui detalhes sobre as ações tomadas, o status do sistema e uma mensagem de parabéns
+/// O arquivo é salvo como 'FINAL_RELATORIO_VITORIA.txt' na pasta do usuário
 fn gerar_certificado() {
   let conteudo =
     "
@@ -70,24 +74,24 @@ fn gerar_certificado() {
   Mas o Hacker acabou de começar... Fique atento para futuras ameaças
   "
 
-  let _ = write_file("FINAL_RELATORIO_VITORIA.txt", conteudo)
+  let _ = write_file("Relatorio_final.txt", conteudo)
 
-  io.println("\n✨ [SISTEMA] Download do relatório completo...")
-  io.println(
-    "✨ [VITÓRIA] O arquivo 'FINAL_RELATORIO_VITORIA.txt' foi gerado na sua pasta!",
-  )
+  io.println("\nDownload do relatório completo...")
+  io.println("O arquivo 'Relatorio_final.txt' foi gerado na sua pasta!")
 }
 
+/// Função que finaliza o jogo, removendo o processo malicioso do banco de dados
+/// Exibe mensagens de sucesso e gera o certificado de vitória
 fn finalizar_jogo(j: Jogador) -> Jogador {
   io.println(
     "\n________________________________________________________________________\n",
   )
   io.println(
-    "> [SQL] EXECUTANDO:\nDELETE FROM processos_ativos WHERE nome = 'Moodle_Reaper'",
+    "EXECUTANDO:\nDELETE FROM processos_ativos WHERE nome = 'Hacker_Moodle'",
   )
-  io.println(">> [DB] 1 linha afetada")
-  io.println(">> [DB] Processo malicioso removido com sucesso")
-  io.println(">> [SISTEMA] O sistema está seguro")
+  io.println(">> 1 linha afetada")
+  io.println(">> Processo malicioso removido com sucesso")
+  io.println(">> O sistema está seguro")
   io.println(
     "________________________________________________________________________\n",
   )
@@ -96,6 +100,8 @@ fn finalizar_jogo(j: Jogador) -> Jogador {
   jogador.adiciona_item(j, "VITORIA_FINAL")
 }
 
+/// Enigma que solicita ao usuário o comando SQL para deletar o vírus do Moodle
+/// O usuário deve inserir o comando DELETE correto
 fn enigma_sql() -> Enigma {
   enigma.novo_enigma(
     "CONSOLE SQL > Digite o comando DELETE completo para apagar o vírus:",
@@ -109,6 +115,8 @@ fn enigma_sql() -> Enigma {
   )
 }
 
+/// Objeto que exibe o schema da tabela de processos ativos
+/// Mostra a estrutura da tabela e os processos ativos, incluindo o vírus do Moodle
 fn obj_schema_tabela() -> Objeto {
   objeto.novo_objeto(
     "Schema do Banco de Dados",
@@ -124,20 +132,14 @@ fn obj_schema_tabela() -> Objeto {
   )
 }
 
-pub fn carregar() -> Ambiente {
-  let sala =
-    ambiente.novo_ambiente(
-      "Servidor SQL (Console Root)",
-      "Um terminal preto aguarda seus comandos. O tempo está acabando...",
-      [],
-      [],
-      [],
-    )
-
-  ambiente.Ambiente(
-    ..sala,
-    enigmas: [enigma_sql()],
-    objetos: [obj_schema_tabela()],
-    saidas: ["FIM"],
+/// Cria o ambiente do servidor SQL, onde o usuário pode interagir com o enigma
+/// Inclui o enigma SQL e o objeto do schema da tabela
+pub fn ambiente_servidor_sql() -> Ambiente {
+  ambiente.novo_ambiente(
+    "Servidor SQL (Console Root)",
+    "Um terminal preto aguarda seus comandos. O tempo está acabando...",
+    [obj_schema_tabela()],
+    ["FIM"],
+    [enigma_sql()],
   )
 }

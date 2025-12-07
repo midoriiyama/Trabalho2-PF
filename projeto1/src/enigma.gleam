@@ -1,5 +1,7 @@
 import jogador.{type Jogador}
 
+/// Define o tipo Enigma com seus atributos
+/// Um enigma possui uma descrição, uma solução, uma lista de dicas e uma ação associada
 pub type Enigma {
   Enigma(
     descricao: String,
@@ -9,6 +11,7 @@ pub type Enigma {
   )
 }
 
+/// Cria um novo enigma
 pub fn novo_enigma(
   pergunta: String,
   resp: String,

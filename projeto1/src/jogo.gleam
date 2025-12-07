@@ -5,16 +5,14 @@ import gleam/string
 import jogador.{type Jogador}
 import objeto.{type Objeto}
 
+/// Explora o ambiente atual do jogo, mostrando detalhes sobre objetos e saídas.
 pub fn explorar(amb: Ambiente, _jog: Jogador) -> String {
   let objetos_txt = list.map(amb.objetos, fn(obj) { "   - " <> obj.nome })
-
-  let saidas_txt = list.map(amb.saidas, fn(s) { "[" <> s <> "]" })
-
   string.join(
     [
-      "\n========================================",
-      "LOCAL ATUAL: " <> amb.nome,
-      "========================================",
+      "\n========================================================================",
+      "        INVESTIGAR LOCAL ATUAL: " <> amb.nome,
+      "========================================================================\n",
       amb.descricao,
       "",
       "O que há na sala:",
@@ -23,20 +21,17 @@ pub fn explorar(amb: Ambiente, _jog: Jogador) -> String {
         False -> string.join(objetos_txt, "\n")
       },
       "",
-      "Saídas disponíveis:",
-      case list.is_empty(saidas_txt) {
-        True -> "   (Sem saídas visíveis - Caminho Bloqueado)"
-        False -> string.join(saidas_txt, "  ")
-      },
     ],
     "\n",
   )
 }
 
+/// Interage com um objeto no ambiente atual do jogo, modificando o estado do jogador
 pub fn interagir(obj: Objeto, jog: Jogador) -> Jogador {
   obj.interacao(jog)
 }
 
+/// Resolve um enigma, aplicando a ação associada se a resposta estiver correta
 pub fn resolver_enigma(enig: Enigma, resposta: String, jog: Jogador) -> Jogador {
   case resposta == enig.solucao {
     True -> {

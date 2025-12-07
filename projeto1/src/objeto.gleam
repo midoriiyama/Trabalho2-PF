@@ -1,5 +1,7 @@
 import jogador.{type Jogador}
 
+/// Define um tipo de objeto no jogo
+/// Um objeto tem um nome, uma descrição, uma função de interação e um estado
 pub type Objeto {
   Objeto(
     nome: String,
@@ -9,6 +11,7 @@ pub type Objeto {
   )
 }
 
+/// Cria um novo objeto
 pub fn novo_objeto(
   nome: String,
   desc: String,

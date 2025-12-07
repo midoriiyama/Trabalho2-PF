@@ -10,6 +10,8 @@ fn write_file(path: String, content: String) -> Bool
 @external(javascript, "../../../../readline_bridge.mjs", "question")
 pub fn question(prompt: String) -> String
 
+/// Contexto da Fase 2
+/// 
 pub fn contexto_f2() {
   io.println(
     "\n\n\n========================================================================\n",
@@ -17,6 +19,19 @@ pub fn contexto_f2() {
   io.println(
     "*Acho que entrei na máquina do administrador do Moodle*\n*Pelo visto existe uma falha na Porta 22...*",
   )
+
+  io.println("   ___________     ")
+  io.println("  |.---------.|    ")
+  io.println("  ||         || ")
+  io.println("  ||         || ")
+  io.println("  ||         || ")
+  io.println("  |'---------'| ")
+  io.println("   `)__ ____('  ")
+  io.println("   [=== -- o ]  ")
+  io.println(" __'---------'__ ")
+  io.println("[::::::::::: :::] ")
+  io.println("'---------------'")
+
   io.println(
     "*Será que com esse acesso, eu consigo encontrar pistas sobre o hacker?*",
   )

@@ -1,3 +1,7 @@
+/////Constrói o ambiente(página) da disciplina de Banco de Dados I
+/////Constrói o ambiente(página) da disciplina de Arquitetura e Organização de Computadores II
+/////Constrói o ambiente(página) da disciplina de Programação Funcional
+
 import ambiente.{type Ambiente}
 import enigma.{type Enigma}
 import gleam/io
@@ -6,6 +10,8 @@ import jogador.{type Jogador}
 @external(javascript, "../../../../readline_bridge.mjs", "question")
 pub fn question(prompt: String) -> String
 
+/// Ponto de entrada da Fase 1
+/// Exibe a narrativa inicial da fase e inicia o jogo
 pub fn contexto_f1() {
   io.println(
     "________________________________________________________________________\n",
@@ -30,6 +36,8 @@ pub fn contexto_f1() {
   }
 }
 
+/// Exibe a página inicial do Moodle que foi corrompido
+/// E inicia a navegação para a área de Disciplinas
 pub fn entra_moodle() {
   io.println(
     "\n========================================================================",
@@ -67,18 +75,21 @@ pub fn entra_moodle() {
   }
 }
 
+/// Exibe a lista de disciplinas disponíveis
+/// E permite ao jogador escolher uma disciplina para explorar
+/// Cada disciplina tem um enigma que deve ser resolvido para obter pistas
 pub fn area_disciplinas() {
   io.println(
-    "________________________________________________________________________",
+    "\n========================================================================",
   )
-  io.println("\n┌── Disciplinas Disponíveis")
-  io.println("│   ├── 1. Banco de Dados I")
-  io.println("│   ├── 2. Análise de Sistemas")
-  io.println("│   ├── 3. Arquitetura e Organização de Computadores II")
-  io.println("│   └── 4. Programação Funcional")
-  io.println("[SISTEMA] Digite o número correspondente para acesso: ")
+  io.println("\nDisciplinas Disponíveis:")
+  io.println("1. Banco de Dados I")
+  io.println("2. Análise de Sistemas")
+  io.println("3. Arquitetura e Organização de Computadores II")
+  io.println("4. Programação Funcional")
 }
 
+/// Permite ao jogador escolher uma disciplina para entrar
 pub fn entrar_no_ambiente(escolha: Int) -> Ambiente {
   case escolha {
     1 -> ambiente_bd()
@@ -89,21 +100,25 @@ pub fn entrar_no_ambiente(escolha: Int) -> Ambiente {
   }
 }
 
+/// Cria o ambiente principal, em que todas as disciplinas estão
 pub fn ambiente_disciplina() -> Ambiente {
   ambiente.novo_ambiente(
     "Disciplinas Disponíveis",
-    "",
+    "Estranhamente, esta área é a única do Moodle que se mantém funcional.\nPossui as quatro disciplinas e um terminal.",
     [],
     [
       "Banco de Dados",
       "Análise de Sistemas",
       "Arquitetura de Computadores",
       "Programação Funcional",
+      "Terminal ADM (Fase2)",
     ],
     [enigma_ip_final()],
   )
 }
 
+/// Cria o enigma final da frase, é preciso que o jogador tenha reunido as pistas
+/// das outras salas
 pub fn enigma_ip_final() -> Enigma {
   enigma.novo_enigma(
     "O terminal aguarda o IP completo.\nQual é o IP? (Formato: xxx.xxx.x.x)",
@@ -113,14 +128,15 @@ pub fn enigma_ip_final() -> Enigma {
   )
 }
 
-///Página ASS
+///Constrói o ambiente(página) da disciplina de Análise de Sistemas
 pub fn ambiente_ass() -> Ambiente {
   let nome = "Disciplina de Análise de Sistemas"
   let descricao =
-    "*As entregas dos trabalhos estão aqui, mas não consigo acessá-los...*"
+    "Você vê o Console de Auditoria do Firewall.\nO registro de eventos críticos foi quase totalmente apagado,\nmas uma falha de autenticação de alto risco resistiu à exclusão.\nO sistema reporta uma tentativa de ataque originada de um endereço interno."
   ambiente.novo_ambiente(nome, descricao, [], ["Voltar"], [enigma_ass()])
 }
 
+///Cria o enigma que contém a primeira parte do IP (192)
 pub fn enigma_ass() -> Enigma {
   enigma.novo_enigma(
     "[08:45:12] ERROR_ACCESS_DENIED\n"
@@ -134,18 +150,20 @@ pub fn enigma_ass() -> Enigma {
   )
 }
 
+/// Ao resolver o enigma de ASS, adiciona a anotação 192 ao inventário do jogador
 pub fn adquire_objeto_ass(j: Jogador) -> Jogador {
   io.println("\nNúmero suspeito [192] foi obtido!")
-  jogador.adiciona_item(j, "Número suspeito: 192")
+  jogador.adiciona_item(j, "Número suspeito 192")
 }
 
-///Página BD
 pub fn ambiente_bd() -> Ambiente {
-  let nome = "Disciplina de Banco de Dados I"
-  let descricao = "*Nossa SQL é bom demaiss*"
+  let nome = "Disciplina de Banco de Dados"
+  let descricao =
+    "Você encontra um terminal SQL que está travado (STUCK).\nO parser rejeitou o comando final, mas a query incompleta ficou em buffer,\nrevelando a tentativa do invasor de listar dados de usuários e,\ncrucialmente, o endereço de host do servidor.\nO hacker tentou uma injeção SQL, mas falhou em fechar a string\nexpondo metadados sensíveis."
   ambiente.novo_ambiente(nome, descricao, [], ["Voltar"], [enigma_bd()])
 }
 
+/// Cria o enigma que contém a segunda parte do IP (168)
 pub fn enigma_bd() -> Enigma {
   enigma.novo_enigma(
     "ERROR: Syntax error at or near 'host_address'\n"
@@ -159,18 +177,20 @@ pub fn enigma_bd() -> Enigma {
   )
 }
 
+/// Ao resolver o enigma de BD, adiciona a anotação 168 ao inventário do jogador
 fn adquire_objeto_bd(j: Jogador) -> Jogador {
   io.println("\nNúmero suspeito [168] foi obtido!")
-  jogador.adiciona_item(j, "Número suspeito: 168")
+  jogador.adiciona_item(j, "Número suspeito 168")
 }
 
-///Página ARQ
 pub fn ambiente_arq() -> Ambiente {
-  let nome = "Disciplina de Arquitetura e Organização de computadores II"
-  let descricao = "*Saudades Pipeline... *"
+  let nome = "Disciplina de Arquitetura de Computadores"
+  let descricao =
+    "Você encontra um Terminal de Assembly (MIPS) ativo,\nmas travado em uma rotina de inicialização crucial do sistema,\ncontribuindo para o colapso do Moodle.\nO hacker injetou um código de negação de serviço (DoS) de baixo nível\nque força o processador a ficar preso em um loop infinito e inútil"
   ambiente.novo_ambiente(nome, descricao, [], ["Voltar"], [enigma_arq()])
 }
 
+/// Cria o enigma que contém a terceira parte do IP (0)
 pub fn enigma_arq() -> Enigma {
   enigma.novo_enigma(
     ">> Iniciando Depuração Remota (MIPS/32-bit)...\n"
@@ -194,18 +214,20 @@ pub fn enigma_arq() -> Enigma {
   )
 }
 
+/// Ao resolver o enigma de ARQ , adiciona a anotação 0 ao inventário do jogador
 pub fn adquire_objeto_arq(j: Jogador) -> Jogador {
   io.println("Número suspeito [0] foi obtido!")
-  jogador.adiciona_item(j, "Número suspeito: 0")
+  jogador.adiciona_item(j, "Número suspeito 0")
 }
 
-///Página PF
 pub fn ambiente_pf() -> Ambiente {
   let nome = "Disciplina de Programação Funcional"
-  let descricao = "*Que curioso, consigo acessar o ambiente interativo de gleam"
+  let descricao =
+    "Você vê um Terminal Interativo (gleam REPL)!\nO hacker manipulou uma função de inicialização crítica,\nforçando-a a se tornar uma constante,\no que causa erros de consistência no kernel do Moodle."
   ambiente.novo_ambiente(nome, descricao, [], ["Voltar"], [])
 }
 
+/// Cria o enigma que contém a quarta parte do IP ()
 pub fn enigma_pf() -> Enigma {
   enigma.novo_enigma(
     "fn calc_final_byte(n: Int) -> Int {\n"
@@ -220,11 +242,13 @@ pub fn enigma_pf() -> Enigma {
   )
 }
 
+/// Ao resolver o enigma de PF, adiciona a anotação 7 ao inventário do jogador
 pub fn adquire_objeto_pf(j: Jogador) -> Jogador {
   io.println("Número suspeito [7] foi obtido!")
-  jogador.adiciona_item(j, "Número suspeito: 7")
+  jogador.adiciona_item(j, "Número suspeito 7")
 }
 
+/// Libera a fase 2 do jogo, onde o jogador pode acessar o terminal do administrador
 fn liberar_fase2(j: Jogador) -> Jogador {
   io.println(
     "________________________________________________________________________\n",

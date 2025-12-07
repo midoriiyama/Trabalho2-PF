@@ -148,7 +148,7 @@ fn enigma_patch() -> Enigma {
   )
 }
 
-pub fn carregar() -> Ambiente {
+pub fn ambiente_cpu() -> Ambiente {
   ambiente.novo_ambiente(
     "Núcleo do Processador",
     "Um ambiente abstrato de código puro",
