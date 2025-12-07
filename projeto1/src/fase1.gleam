@@ -253,7 +253,7 @@ fn liberar_fase2(j: Jogador) -> Jogador {
   io.println(
     "________________________________________________________________________\n",
   )
-  io.println(">> [SISTEMA] IP 192.168.0.1 localizado.")
+  io.println(">> [SISTEMA] IP 192.168.0.7 localizado.")
   io.println(">> [HACK] Iniciando varredura de portas no alvo...")
   io.println(">> [ALERTA] Porta 22 (SSH) está ABERTA e VULNERÁVEL.")
   io.println(">> [AUTO] Injetando exploit de conexão remota...")

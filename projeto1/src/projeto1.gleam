@@ -14,6 +14,7 @@ import jogo
 @external(javascript, "../../../../readline_bridge.mjs", "question")
 pub fn question(prompt: String) -> String
 
+/// Função para printar centralizado
 pub fn print_centralizado(texto: String) {
   let largura_terminal = 72
   let tamanho_texto = string.length(texto)
@@ -37,7 +38,7 @@ fn game_loop(sala_atual: Ambiente, hacker: Jogador) {
       mostra_derrota()
     }
     False -> {
-      //Caso não estourou, verifica Vitória (Fim da Fase 4)
+      //Caso não estourou, verifica Vitória
       verifica_vitoria(hacker, sala_atual)
     }
   }
@@ -74,7 +75,7 @@ fn verifica_vitoria(hacker: Jogador, sala_atual: Ambiente) {
   }
 }
 
-/// Transições entre as fases do jogo, verificando os itens necessários e o ambiente
+/// Transições entre a fase 2 -> fase 3, verificando os itens necessários e o ambiente
 /// Cada transição chama a função `game_loop` com o novo ambiente e o jogador atualizado
 fn transicao_fase2(hacker: Jogador, sala_atual: Ambiente) {
   case
@@ -93,6 +94,8 @@ fn transicao_fase2(hacker: Jogador, sala_atual: Ambiente) {
   }
 }
 
+///Transições entre a fase 3 -> fase 4, verificando os itens necessários e o ambiente
+/// Cada transição chama a função `game_loop` com o novo ambiente e o jogador atualizado
 fn transicao_fase3(hacker: Jogador, sala_atual: Ambiente) {
   case
     jogador.tem_item(hacker, "Credencial_Root_SQL")
@@ -109,6 +112,8 @@ fn transicao_fase3(hacker: Jogador, sala_atual: Ambiente) {
   }
 }
 
+///Transições entre a fase 4 -> vitp, verificando os itens necessários e o ambiente
+/// Cada transição chama a função `game_loop` com o novo ambiente e o jogador atualizado
 fn transicao_fase4(hacker: Jogador, sala_atual: Ambiente) {
   case
     jogador.tem_item(hacker, "Acesso_Banco_Dados")
@@ -119,7 +124,6 @@ fn transicao_fase4(hacker: Jogador, sala_atual: Ambiente) {
       game_loop(fase4.ambiente_servidor_sql(), hacker)
     }
     False -> {
-      //O JOGO RODA AQUI (Se não mudou de fase)
       executar_rodada(sala_atual, hacker)
     }
   }
@@ -144,7 +148,9 @@ fn executar_rodada(sala_atual: Ambiente, hacker: Jogador) {
   io.println(
     "________________________________________________________________________\n",
   )
-  print_centralizado("Comandos: [Investigar] [Pegar] [Hackear] [Mochila]")
+  print_centralizado(
+    "Comandos: [Investigar] [Pegar] [Hackear] [Mochila] [Dica]",
+  )
 
   // Comandos de navegação da Fase 1
   case string.contains(sala_atual.nome, "Disciplinas Disponíveis") {
@@ -196,14 +202,32 @@ fn executar_rodada(sala_atual: Ambiente, hacker: Jogador) {
         }
       }
     }
-
+    "Dica" -> {
+      case list.first(sala_atual.enigmas) {
+        Ok(enigma) -> {
+          io.println(
+            "\n========================================================================",
+          )
+          io.println("\nDICA:\n")
+          list.each(enigma.dicas, fn(i) { io.println(" - " <> i) })
+          game_loop(sala_atual, hacker)
+        }
+        Error(Nil) -> {
+          io.println(
+            "\n========================================================================",
+          )
+          io.println("\n>> Não há nada útil aqui.")
+          game_loop(sala_atual, hacker)
+        }
+      }
+    }
     "Hackear" -> {
       case list.first(sala_atual.enigmas) {
         Ok(enigma) -> {
           io.println(
             "\n========================================================================",
           )
-          io.println("\n🔐 " <> enigma.descricao)
+          io.println(enigma.descricao)
 
           io.println("\nDigite 'Voltar' para retornar a página anterior")
           let tentativa = question("Digite a resposta: ")
@@ -211,7 +235,6 @@ fn executar_rodada(sala_atual: Ambiente, hacker: Jogador) {
             True -> game_loop(sala_atual, hacker)
             False -> {
               let novo_hacker = jogo.resolver_enigma(enigma, tentativa, hacker)
-              // Verifica se acertou (se ganhou item novo)
               verifica_acerto(hacker, novo_hacker, sala_atual)
             }
           }
@@ -237,6 +260,8 @@ fn executar_rodada(sala_atual: Ambiente, hacker: Jogador) {
   }
 }
 
+/// A função verifica se o jogador acertou a resposta do enigma. Se sim, concede o 
+/// acesso à próxima fase, se não, aumenta o nível de alerta em 20%.
 fn verifica_acerto(hacker: Jogador, novo_hacker: Jogador, sala_atual: Ambiente) {
   case list.length(novo_hacker.inventario) > list.length(hacker.inventario) {
     True -> {
@@ -246,7 +271,7 @@ fn verifica_acerto(hacker: Jogador, novo_hacker: Jogador, sala_atual: Ambiente) 
     False -> {
       io.println("\n❌ ACESSO NEGADO! O sistema detectou a intrusão.")
       io.println("⚠️  Nível de Alerta +20%")
-      // Aumenta o alerta (Dano)
+
       let hacker_punido = jogador.aumentar_alerta(hacker, 20)
       game_loop(sala_atual, hacker_punido)
       io.println("_________________________________________________________\n")

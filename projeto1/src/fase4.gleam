@@ -41,9 +41,9 @@ pub fn contexto_f4() {
   io.println("IDENTIFIQUE A TABELA E O NOME DO VÍRUS PARA REMOVÊ-LO")
 }
 
-/// Relatório final de vitória e salva em um arquivo
+/// Relatório final de vitória, salva em um arquivo
 /// O relatório inclui detalhes sobre as ações tomadas, o status do sistema e uma mensagem de parabéns
-/// O arquivo é salvo como 'FINAL_RELATORIO_VITORIA.txt' na pasta do usuário
+/// O arquivo é salvo como 'Relatorio_final.txt' na pasta do usuário
 fn gerar_certificado() {
   let conteudo =
     "
@@ -57,9 +57,9 @@ fn gerar_certificado() {
   AGENTE: Estudante de Computação
 
   RESUMO DAS AÇÕES:
-  [x] IP do invasor rastreado (192.168.0.1)
+  [x] IP do invasor rastreado (192.168.0.7)
   [x] Acesso Root obtido (Senha: JUJUBA)
-  [x] Loop Infinito corrigido (Patch: recuperar_sistema)
+  [x] Loop Infinito corrigido (recuperar_sistema())
   [x] Banco de Dados limpo (Comando DELETE SQL)
 
   STATUS DO SISTEMA:
@@ -104,7 +104,7 @@ fn enigma_sql() -> Enigma {
     "DELETE FROM processos_ativos WHERE nome = 'Hacker_Moodle'",
     [
       "Sintaxe: DELETE FROM [tabela] WHERE [coluna] = 'valor'",
-      "Olhe o Schema da Tabela (objeto) para ver os nomes",
+      "Olhe o Schema da Tabela (objeto) para conferir a partir dos nomes",
       "O nome do vírus deve estar entre aspas simples ('')",
     ],
     finalizar_jogo,
@@ -115,7 +115,7 @@ fn enigma_sql() -> Enigma {
 /// Mostra a estrutura da tabela e os processos ativos, incluindo o vírus do Moodle
 fn obj_schema_tabela() -> Objeto {
   objeto.novo_objeto("Schema do Banco de Dados", "", fn(j) {
-    io.println("\n                 --- TABELA: processos_ativos ---")
+    io.println("                  --- TABELA: processos_ativos ---")
     io.println("                 | id  | nome            | status  |")
     io.println("                 |-----|-----------------|---------|")
     io.println("                 | 001 | System_Kernel   | OK      |")

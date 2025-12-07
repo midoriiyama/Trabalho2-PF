@@ -133,7 +133,7 @@ fn enigma_dica() -> Enigma {
   enigma.novo_enigma(
     "Qual o nome da função que deve ser chamada no lugar de 'manter_loop()'?",
     "recuperar_sistema()",
-    ["Leia o código na tela acima", "A função correta começa com 'recuperar_'"],
+    ["Leia o código", "A função correta começa com 'recuperar_'"],
     liberar_fase4,
   )
 }
@@ -142,7 +142,16 @@ fn enigma_dica() -> Enigma {
 pub fn ambiente_cpu() -> Ambiente {
   ambiente.novo_ambiente(
     "Núcleo do Processador",
-    "Um ambiente abstrato de código puro",
+    "  pub fn loop_destrutivo(comando: List(String)) {\n"
+      <> "    case comando {\n"
+      <> "      \n"
+      <> "      PARAR_RECURSAO -> manter_loop()\n"
+      <> "      _ -> {\n"
+      <> "        consumir_memoria()\n"
+      <> "        loop_destrutivo(comando)\n"
+      <> "      }\n"
+      <> "    }\n"
+      <> "  }\n",
     [obj_terminal_debug()],
     ["Banco de Dados (Fase 4)"],
     [enigma_dica()],

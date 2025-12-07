@@ -227,7 +227,7 @@ fn enigma_sudo() -> Enigma {
 pub fn ambiente_adm() -> Ambiente {
   ambiente.novo_ambiente(
     "Terminal Remoto",
-    "O terminal exibe um *prompt* simples, confirmando que a conexão SSH\nfoi bem-sucedida, as você está como um **usuário comum** (`$`)\ne não pode fazer nada significativo.\n"
+    "O terminal exibe um *prompt* simples, confirmando que a conexão SSH\nfoi bem-sucedida, mas você está como um **usuário comum** (`$`)\ne não pode fazer nada significativo.\n"
       <> "*Você digita o comando para obter\nprivilégios de super-usuário e o sistema responde exigindo\na senha para liberar o **Acesso ROOT**",
     [obj_dica()],
     ["Banco de Dados (Fase 3)"],
